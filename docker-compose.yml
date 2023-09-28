@@ -16,7 +16,7 @@ services:
      PGADMIN_DEFAULT_EMAIL: 111@gmail.com
      PGADMIN_DEFAULT_PASSWORD: root
     ports:
-      - "9000:80"
+      - "10000:80"
     depends_on:
       - database
 
@@ -24,7 +24,7 @@ services:
     build:
       context: .
     ports:
-      - "8000:8000"
+      - "8080:8000"
     restart: always
     volumes:
       - ./library:/library
