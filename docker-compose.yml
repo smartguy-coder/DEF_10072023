@@ -35,4 +35,5 @@ services:
       - DB_PASSWORD=root
     depends_on:
       - database
-
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
