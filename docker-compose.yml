@@ -4,4 +4,8 @@ services:
   database:
     image: postgres:15-alpine
     environment:
-      -
+      - POSTGRES_DB=db
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+
+  pgadmin
