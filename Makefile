@@ -7,3 +7,5 @@ su:
 newapp:
 	docker compose run --rm web-app sh -c "python manage.py startapp $(app)"
 
+from_file:
+	@sh from_file.sh
