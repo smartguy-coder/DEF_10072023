@@ -26,7 +26,13 @@ class BookAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at',)
 
 
+class VisitorAdmin(admin.ModelAdmin):
+    search_fields = ['name']
+    ordering = ('id',)
+
+
 admin.site.register(models.Author, AuthorAdmin)
 admin.site.register(models.AuthorDetails, AuthorDetailsAdmin)
 admin.site.register(models.Book, BookAdmin)
+admin.site.register(models.Visitor, VisitorAdmin)
 
