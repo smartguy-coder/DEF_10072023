@@ -10,7 +10,7 @@ class Book(models.Model):
                                 validators=[MinValueValidator(1)])
     created_at = models.DateTimeField(auto_created=True, auto_now=True)
     last_change_at = models.DateTimeField(auto_now_add=True)
-    pages = models.IntegerField()
+    pages = models.IntegerField(validators=[MinValueValidator(1)])
     author = models.ManyToManyField('Author', blank=False)
     visitor = models.ForeignKey('Visitor', null=True, default=None, on_delete=models.RESTRICT, blank=True)
 
@@ -18,7 +18,7 @@ class Book(models.Model):
         return f'{self.title} - {self.pages}'
 
     def __len__(self):
-        return self.pages
+        return self.pages if self.pages >= 0 else 0
 
 
 class Author(models.Model):
