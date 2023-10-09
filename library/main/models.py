@@ -24,7 +24,7 @@ class Book(models.Model):
 class Author(models.Model):
     name = models.CharField(max_length=100, blank=False)
     pseudonym = models.CharField(max_length=100, default='')
-    has_bad_mude = models.BooleanField(default=False)
+    has_bad_temper = models.BooleanField(default=False)
 
 
 class AuthorDetails(models.Model):
