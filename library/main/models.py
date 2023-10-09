@@ -26,6 +26,8 @@ class Author(models.Model):
     pseudonym = models.CharField(max_length=100, default='')
     has_bad_temper = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f'{self.name} - {self.pseudonym}'
 
 class AuthorDetails(models.Model):
     author = models.OneToOneField(Author, on_delete=models.CASCADE)
