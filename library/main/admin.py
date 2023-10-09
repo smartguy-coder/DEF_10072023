@@ -12,6 +12,12 @@ class AuthorAdmin(admin.ModelAdmin):
     ordering = ('id',)
 
 
+class AuthorDetailsAdmin(admin.ModelAdmin):
+    search_fields = ['author']
+    list_display = ('author',)
+    ordering = ('id',)
+
+
 class BookAdmin(admin.ModelAdmin):
     search_fields = ['title']
     list_display = ('title', 'price')
@@ -21,5 +27,6 @@ class BookAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Author, AuthorAdmin)
+admin.site.register(models.AuthorDetails, AuthorDetailsAdmin)
 admin.site.register(models.Book, BookAdmin)
 
