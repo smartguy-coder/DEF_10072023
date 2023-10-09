@@ -12,6 +12,7 @@ class Book(models.Model):
     last_change_at = models.DateTimeField(auto_now_add=True)
     pages = models.IntegerField()
     author = models.ManyToManyField('Author', blank=False)
+    visitor = models.ForeignKey('Visitor', null=True, default=None, on_delete=models.RESTRICT)
 
     def __str__(self):
         return f'{self.title} - {self.pages}'
@@ -29,3 +30,7 @@ class Author(models.Model):
 class AuthorDetails(models.Model):
     author = models.OneToOneField(Author, on_delete=models.CASCADE)
     biography = models.TextField()
+
+
+class Visitor(models.Model):
+    name = models.CharField(max_length=50)
