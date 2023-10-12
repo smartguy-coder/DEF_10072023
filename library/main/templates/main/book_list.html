@@ -1,0 +1,36 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+{{ book_list }}
+
+<table style="border:1px solid black;aling:center;" border="1">
+    <tr>
+        <th>Назва книги</th>
+        <th>Ціна</th>
+        <th>Автори</th>
+    </tr>
+
+    {% for book in book_list%}
+    <tr>
+        <td>{{ book.title }}</td>
+        <td>{{ book.price }}</td>
+        <td>
+            {% for author in book.author.all %}
+                <span style="display:block">{{ author }}</span>
+            {% endfor %}
+        </td>
+
+
+    </tr>
+
+    {% endfor %}
+
+
+
+</table>
+
+
+
+
+{% endblock %}
