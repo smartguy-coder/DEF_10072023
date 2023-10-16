@@ -12,6 +12,12 @@ class BookCreateView(CreateView):
     fields = '__all__'
 
 
+class BookEditView(UpdateView):
+    model = Book
+    template_name = 'main/book_edit.html'
+    success_url = '/'
+    fields = '__all__'
+
 
 class BookListView(ListView):
     queryset = Book.objects.all()
