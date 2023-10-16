@@ -2,8 +2,7 @@
 
 {% block content %}
 
-{{ book_list }}
-{{ age }}
+<a href="book/add/">Добавити нову книгу</a>
 
 <table style="border:1px solid black;aling:center;" border="1">
     <tr>
@@ -21,6 +20,9 @@
                 <span style="display:block">{{ author }}</span>
 <!--                <p>{{ author }}</p>-->
             {% endfor %}
+        </td>
+        <td>
+            <a href="book/{{ book.id }}/edit/">Редагувати</a>
         </td>
 
 

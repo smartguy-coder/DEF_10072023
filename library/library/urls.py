@@ -9,5 +9,4 @@ urlpatterns = [
     path('book/add/', views.BookCreateView.as_view()),
     path('book/<int:pk>/edit/', views.BookEditView.as_view()),
     path('func/', views.books_getter),
-
 ]
