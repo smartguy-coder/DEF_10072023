@@ -13,5 +13,8 @@ migrations:
 migrate:
 	docker compose run --rm web-app sh -c "python manage.py migrate"
 
+shell:
+	docker compose run --rm web-app sh -c "python manage.py shell"
+
 from_file:
 	@sh from_file.sh
