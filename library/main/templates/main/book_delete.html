@@ -1,7 +1,7 @@
 {% extends "main/base.html" %}
 
 {% block content %}
-  <h1>Видалити книгу {{ book.name }}</h1>
+  <h1>Видалити книгу {{ book.title }}</h1>
 
   <form method="post">
     {% csrf_token %}
