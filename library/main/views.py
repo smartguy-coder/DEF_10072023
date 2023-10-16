@@ -26,7 +26,7 @@ class BookDeleteView(DeleteView):
 
 
 class BookListView(ListView):
-    queryset = Book.objects.all()
+    queryset = Book.objects.all()[:100]
     template_name = 'main/book_list.html'
 
 
