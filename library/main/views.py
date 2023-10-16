@@ -19,6 +19,11 @@ class BookEditView(UpdateView):
     fields = '__all__'
 
 
+class BookDeleteView(DeleteView):
+    model = Book
+    template_name = 'main/book_delete.html'
+    success_url = '/'
+
 class BookListView(ListView):
     queryset = Book.objects.all()
     template_name = 'main/book_list.html'

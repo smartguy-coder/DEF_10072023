@@ -1,0 +1,22 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+  <h1>Видалити книгу {{ book.name }}</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    <table>
+      {{ form }}
+      <tr>
+        <h3>Ви впевнені?</h3>
+        <a href="/">Скасувати</a>
+
+        <td>
+          <button type="submit">Видалити</button>
+        </td>
+      </tr>
+    </table>
+
+  </form>
+
+{% endblock %}
