@@ -1,7 +1,16 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Book
+
+
+class BookCreateView(CreateView):
+    model = Book
+    template_name = 'main/book_edit.html'
+    success_url = '/'
+    fields = '__all__'
+
 
 
 class BookListView(ListView):
