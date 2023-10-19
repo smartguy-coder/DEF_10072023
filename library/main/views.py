@@ -27,7 +27,12 @@ class BookDeleteView(DeleteView):
 
 class BookListView(ListView):
     queryset = Book.objects.all(
-
+    ).filter(
+        # visitor_id__isnull=False,
+        # id__lte=100
+        # id__gte=6400
+        # title__contains='Last'
+        # title__exact='Last'
     ).prefetch_related(  # many-to-many
         'author'
     ).select_related(  # one to many
