@@ -19,6 +19,9 @@
 
 {% if request.user.is_authenticated %}
 <a href="{% url 'logout' %}">Розлогінитися</a>
+
+{% else %}
+<a href="{% url 'login' %}">Залогінитися</a>
 {% endif %}
 
 

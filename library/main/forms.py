@@ -3,5 +3,5 @@ from django.contrib.auth.forms import AuthenticationForm
 
 
 class LoginUserForm(AuthenticationForm):
-    username = forms.CharField(label='Login')
-    password = forms.CharField(label='Password')
+    username = forms.CharField(label='Login', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'password'}))
