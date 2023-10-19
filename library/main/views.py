@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 from .models import Book
 
@@ -41,14 +43,22 @@ class BookListView(ListView):
     template_name = 'main/book_list.html'
 
 
+def logout_user(request):
+    logout(request)
+    pass
+
+
 def books_getter(request):
+    # print(request.__dict__, 1111111111111)
+    # print(9999999999999)
+
     books = Book.objects.all(
     ).only(
         'title',
         'price',
     )[:2]
-    print(books.query)
-    print(1111111)
+    # print(books.query)
+    # print(1111111)
 
     context = {
         'book_list': books,

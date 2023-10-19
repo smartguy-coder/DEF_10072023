@@ -10,5 +10,9 @@ urlpatterns = [
     path('book/<int:pk>/edit/', views.BookEditView.as_view()),
     path('book/<int:pk>/delete/', views.BookDeleteView.as_view()),
     path('func/', views.books_getter),
+
+    path('web/logout/', views.logout_user, name='logout'),
+
+
     path("__debug__/", include("debug_toolbar.urls")),
 ]

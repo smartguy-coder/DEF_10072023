@@ -6,6 +6,25 @@
 </head>
 <body>
 
+
+{{ request }}
+<br>
+{{ request.user }}
+<br>
+{{ request.user.is_authenticated }}
+
+<br>
+
+
+
+{% if request.user.is_authenticated %}
+<a href="{% url 'logout' %}">Розлогінитися</a>
+{% endif %}
+
+
+<br>
+
+
 {% block content %}
 {% endblock %}
 
