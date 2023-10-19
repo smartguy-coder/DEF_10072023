@@ -26,7 +26,13 @@ class BookDeleteView(DeleteView):
 
 
 class BookListView(ListView):
-    queryset = Book.objects.all()[:100]
+    queryset = Book.objects.all(
+
+    ).prefetch_related(  # many-to-many
+        'author'
+    ).select_related(  # one to many
+        'visitor'
+    )
     template_name = 'main/book_list.html'
 
 

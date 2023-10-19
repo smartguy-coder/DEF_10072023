@@ -13,7 +13,7 @@
 
     {% for book in book_list%}
     <tr>
-        <td>{{ book.title }}</td>
+        <td>{{ book.title }} {{ book.visitor }}</td>
         <td>{{ book.price }}</td>
         <td>
             {% for author in book.author.all %}
