@@ -19,7 +19,7 @@ class LoginUser(LoginView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['book_list'] = Book.objects.all()[:10]
+        context['book_list'] = Book.objects.all()[:3]
         return context
 
 
@@ -63,7 +63,7 @@ class BookListView(ListView):
         'author'
     ).select_related(  # one to many
         'visitor'
-    )
+    )[:15]
     template_name = 'main/book_list.html'
 
 
