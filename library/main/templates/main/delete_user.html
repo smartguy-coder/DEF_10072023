@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+  <form method="post">
+    {% csrf_token %}
+
+      <input type="submit" class="btn" onclick="return confirm('Are you sure?')" value="Delete my profile">
+
+  </form>
+
+{% endblock %}

@@ -12,6 +12,7 @@ urlpatterns = [
     path('func/', views.books_getter),
 
     path('logout/', views.logout_user, name='logout'),
+    path('registration/', views.RegisterUser.as_view(), name='registration'),
     path('login/', views.LoginUser.as_view(), name='login'),
 
 

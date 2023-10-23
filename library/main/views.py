@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import logout, login
 from django.shortcuts import redirect
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.models import User
 from .forms import LoginUserForm, RegisterUserForm
 from django.urls import reverse_lazy
 
@@ -37,6 +38,13 @@ class RegisterUser(CreateView):
         user = form.save()
         login(self.request, user)
         return redirect('index')
+
+class DeleteUser(DeleteView):
+    model = User
+    template_name = 'main/delete_user.html'
+
+    def get_success_url(self):
+        return reverse_lazy('index')
 
 
 
