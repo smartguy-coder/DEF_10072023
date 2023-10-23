@@ -19,6 +19,7 @@
 
 {% if request.user.is_authenticated %}
 <a href="{% url 'logout' %}">Розлогінитися</a>
+<a href="{% url 'delete_user' user.pk %}">Delete my profile</a>
 
 {% else %}
     <a href="{% url 'registration' %}">Registration</a>

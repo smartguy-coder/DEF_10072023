@@ -7,6 +7,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User
 from .forms import LoginUserForm, RegisterUserForm
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from .models import Book
 
@@ -39,13 +40,15 @@ class RegisterUser(CreateView):
         login(self.request, user)
         return redirect('index')
 
-class DeleteUser(DeleteView):
+class DeleteUser(PermissionRequiredMixin, DeleteView):
     model = User
     template_name = 'main/delete_user.html'
 
     def get_success_url(self):
         return reverse_lazy('index')
 
+    def handle_no_permission(self):
+        return reverse_lazy('index')
 
 
 
@@ -81,7 +84,7 @@ class BookListView(ListView):
         'author'
     ).select_related(  # one to many
         'visitor'
-    )[:15]
+    )
     template_name = 'main/book_list.html'
 
 
