@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
 from django.shortcuts import redirect
 from django.contrib.auth.views import LoginView
-from .forms import LoginUserForm
+from .forms import LoginUserForm, RegisterUserForm
 from django.urls import reverse_lazy
 
 from .models import Book
@@ -29,7 +29,14 @@ def logout_user(request):
 
 
 class RegisterUser(CreateView):
-    pass
+    form_class = RegisterUserForm
+    template_name = 'main/register.html'
+    success_url = reverse_lazy('index')
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('index')
 
 
 
