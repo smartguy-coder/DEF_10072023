@@ -23,10 +23,13 @@ class LoginUser(LoginView):
         return context
 
 
+def logout_user(request):
+    logout(request)
+    return redirect('index')
 
 
-
-
+class RegisterUser(CreateView):
+    pass
 
 
 
@@ -67,9 +70,6 @@ class BookListView(ListView):
     template_name = 'main/book_list.html'
 
 
-def logout_user(request):
-    logout(request)
-    return redirect('index')
 
 
 def books_getter(request):
