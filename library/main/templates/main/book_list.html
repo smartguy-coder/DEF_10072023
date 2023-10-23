@@ -32,11 +32,9 @@
 
     {% endfor %}
 
-
-
 </table>
 
-{% "main/paginator.html" page=page_obj %}
+{% include "main/paginator.html" with page=page_obj %}
 
 
 {% endblock %}

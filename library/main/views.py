@@ -86,7 +86,7 @@ class BookListView(ListView):
         'visitor'
     )
     template_name = 'main/book_list.html'
-    paginate_by = 5
+    paginate_by = 50
 
 
 
