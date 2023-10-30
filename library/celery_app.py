@@ -2,6 +2,7 @@ import time
 
 from celery import Celery
 from django.conf import settings
+# from library.settings import CELERY_BROKER_URL
 
 app = Celery('celery')
 app.config_from_object('django.conf:settings')
