@@ -86,7 +86,7 @@ class BookListView(ListView):
         'visitor'
     )
     template_name = 'main/book_list.html'
-    paginate_by = 50
+    paginate_by = 5000
 
 
 
@@ -107,5 +107,7 @@ def books_getter(request):
         'book_list': books,
         'age': 555555555555
     }
+    from .tasks import do_some_work
+    do_some_work.delay(book_id=books[0].id)
 
     return render(request, 'main/book_list.html', context=context)
