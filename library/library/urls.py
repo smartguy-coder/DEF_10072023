@@ -16,6 +16,9 @@ urlpatterns = [
     path('login/', views.LoginUser.as_view(), name='login'),
     path('delete_user/<int:pk>', views.DeleteUser.as_view(), name='delete_user'),
 
+    path('api/v1/data/', views.json_data),
+    path('api/v1/data_drf/', views.json_data),
+
 
     path("__debug__/", include("debug_toolbar.urls")),
 ]

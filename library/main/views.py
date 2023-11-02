@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -8,8 +9,20 @@ from django.contrib.auth.models import User
 from .forms import LoginUserForm, RegisterUserForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from rest_framework import generics
 
 from .models import Book
+from .tasks import raise_price
+
+
+class BookListAPIView(generics.ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+
+
+def json_data(request):
+    return JsonResponse({'name': 'Alex'})
 
 
 class LoginUser(LoginView):
@@ -51,7 +64,6 @@ class DeleteUser(PermissionRequiredMixin, DeleteView):
         return reverse_lazy('index')
 
 
-
 class BookCreateView(CreateView):
     model = Book
     template_name = 'main/book_edit.html'
@@ -88,9 +100,6 @@ class BookListView(ListView):
     template_name = 'main/book_list.html'
     paginate_by = 5000
 
-
-
-
 def books_getter(request):
     # print(request.__dict__, 1111111111111)
     # print(9999999999999)
@@ -99,7 +108,7 @@ def books_getter(request):
     ).only(
         'title',
         'price',
-    )[:2]
+    )
     # print(books.query)
     # print(1111111)
 
@@ -107,7 +116,7 @@ def books_getter(request):
         'book_list': books,
         'age': 555555555555
     }
-    from .tasks import do_some_work
-    do_some_work.delay(book_id=books[0].id)
+
+    raise_price.delay()
 
     return render(request, 'main/book_list.html', context=context)
