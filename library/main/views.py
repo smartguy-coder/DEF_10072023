@@ -6,18 +6,42 @@ from django.contrib.auth import logout, login
 from django.shortcuts import redirect
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User
+from rest_framework.response import Response
+
 from .forms import LoginUserForm, RegisterUserForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from rest_framework import generics
+from rest_framework.views import APIView
 
 from .models import Book
 from .serializers import BookSerializer
 from .tasks import raise_price
 
 
+class BookAPIView(APIView):
+    def get(self, request, format=None):
+        books = Book.objects.all()
+        serializer = BookSerializer(books, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        pass
+
+
 class BookListAPIView(generics.ListAPIView):
-    queryset = Book.objects.all()
+    queryset = Book.objects.all(
+    ).filter(
+        # visitor_id__isnull=False,
+        # id__lte=100
+        # id__gte=6400
+        # title__contains='Last'
+        # title__exact='Last'
+    ).prefetch_related(  # many-to-many
+        'author'
+    ).select_related(  # one to many
+        'visitor'
+    )
     serializer_class = BookSerializer
 
 
