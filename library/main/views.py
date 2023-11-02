@@ -146,8 +146,7 @@ def books_getter(request):
         'title',
         'price',
     )
-    # print(books.query)
-    # print(1111111)
+    print(books.query, 22222222222)
 
     context = {
         'book_list': books,
