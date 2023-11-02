@@ -12,6 +12,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from rest_framework import generics
 
 from .models import Book
+from .serializers import BookSerializer
 from .tasks import raise_price
 
 
@@ -20,9 +21,15 @@ class BookListAPIView(generics.ListAPIView):
     serializer_class = BookSerializer
 
 
-
 def json_data(request):
-    return JsonResponse({'name': 'Alex'})
+    book = Book.objects.all().first()
+    result = {
+        'title': book.title,
+        # 'author': book.author,
+        'price': book.price
+    }
+
+    return JsonResponse(result)
 
 
 class LoginUser(LoginView):
