@@ -1,3 +1,4 @@
+from django.forms import model_to_dict
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic.list import ListView
@@ -11,7 +12,7 @@ from rest_framework.response import Response
 from .forms import LoginUserForm, RegisterUserForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.views import APIView
 
 from .models import Book
@@ -26,7 +27,12 @@ class BookAPIView(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        pass
+        new_book = Book.objects.create(
+            title=request.data['title'],
+            author=request.data['author'],
+            price=request.data['price']
+        )
+        return Response({'new_book': model_to_dict(new_book)}, status=status.HTTP_201_CREATED)
 
 
 class BookListAPIView(generics.ListAPIView):
