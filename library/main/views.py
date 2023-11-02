@@ -29,8 +29,8 @@ class BookAPIView(APIView):
     def post(self, request, format=None):
         new_book = Book.objects.create(
             title=request.data['title'],
-            author=request.data['author'],
-            price=request.data['price']
+            price=request.data['price'],
+            pages=request.data['pages']
         )
         return Response({'new_book': model_to_dict(new_book)}, status=status.HTTP_201_CREATED)
 

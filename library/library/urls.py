@@ -18,7 +18,7 @@ urlpatterns = [
 
     path('api/v1/data/', views.json_data),
     path('api/v1/data-drf-get/', views.BookListAPIView.as_view()),
-    path('api/v1/data-drf-universal/', views.BookListAPIView.as_view()),
+    path('api/v1/data-drf-universal/', views.BookAPIView.as_view()),
 
 
     path("__debug__/", include("debug_toolbar.urls")),
